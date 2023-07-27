@@ -40,6 +40,22 @@ To run the app locally, follow these steps:
 
 Once the app is running, open your web browser and navigate to `http://localhost:3000` to see the top 10 trading pairs with their last traded prices. The page will automatically refresh to display the latest data every time you visit it.
 
+## Demo
+
+![ss1](https://github.com/Manishsingh8135/HodlinfoTask/assets/54506539/6c8c8e0e-7c29-46a5-87b5-0cc7428cea39)
+
+
+
+
+![ss2](https://github.com/Manishsingh8135/HodlinfoTask/assets/54506539/7d9c3503-18e7-4351-b2a2-d179f1848deb)
+
+
+
+
+![ss3](https://github.com/Manishsingh8135/HodlinfoTask/assets/54506539/6ca5b72b-081e-4b8e-8038-a478414a10c9)
+
+
+
 ## Questions
 
 If you have any questions or need support, feel free to reach out:
