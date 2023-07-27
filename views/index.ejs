@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HODLINFO</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 dark:bg-black text-gray-800 dark:text-white" data-theme="light">
+
+  <!-- Navbar -->
+  <nav class="bg-white dark:bg-gray-800 shadow">
+    <div class="container mx-auto px-4 py-2">
+      <div class="flex items-center justify-between">
+        <div class="ml-4">
+          <img  src="https://hodlinfo.com/static/media/HODLINFO.8f78fc06.png" alt="Logo" class="h-8 ">
+        </div>
+        
+
+        <!-- Dark Mode Toggle Button -->
+        <div class="mx-4">
+          <a href="https://hodlinfo.com/connect/telegram"> <button class="rounded-full p-3 bg-teal-400 font-semibold mx-3">Connect Telegram </button></a>
+         
+          <button id="themeToggle" class="bg-gray-200 dark:bg-gray-600 rounded-full p-2 focus:outline-none">
+            <i class="fas fa-moon text-yellow-400 dark:text-gray-300"></i>
+            <i class="fas fa-sun text-yellow-400 dark:text-gray-300 hidden"></i>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mx-auto my-16 text-center">
+    <h2 class="text-4xl font-bold">Best Price to Trade</h2>
+    <% if (top10Pairs.length > 0) { %>
+      <p class="text-2xl mt-2 font-semibold"><%= top10Pairs[0].name %>  : <%= top10Pairs[0].last %></p>
+    <% } else { %>
+      <p class="text-2xl mt-2">No data available</p>
+    <% } %>
+  </div>
+
+  <div class="container mx-auto mt-8 px-4 text-center">
+    <div class="bg-white dark:bg-gray-700 rounded-lg shadow">
+      <table class="w-full table-auto ">
+        <thead class="border-b text-xl py-16">
+          <tr class="bg-black-600">
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Last</th>
+            <th class="px-4 py-2">Buy</th>
+            <th class="px-4 py-2">Sell</th>
+            <th class="px-4 py-2">Volume</th>
+            <th class="px-4 py-2">Base Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+   
+          <% top10Pairs.forEach(pair=> { %>
+            <tr class="border-b">
+              <td class=" px-4 py-3">
+                <%= pair.name %>
+              </td>
+              <td class=" px-4 py-3">
+                <%= pair.last %>
+              </td>
+              <td class=" px-4 py-3">
+                <%= pair.buy %>
+              </td>
+              <td class=" px-4 py-3">
+                <%= pair.sell %>
+              </td>
+              <td class=" px-4 py-3">
+                <%= pair.volume %>
+              </td>
+              <td class=" px-4 py-3">
+                <%= pair.base_unit.toUpperCase() %>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const toggleButton = document.getElementById('themeToggle');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+      body.dataset.theme = currentTheme;
+      if (currentTheme === 'dark') {
+        body.classList.add('dark');
+        toggleButton.querySelector('.fa-moon').classList.add('hidden');
+        toggleButton.querySelector('.fa-sun').classList.remove('hidden');
+      }
+    } else {
+ 
+      localStorage.setItem('theme', 'light');
+    }
+
+    toggleButton.addEventListener('click', () => {
+      const theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+      body.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+
+      if (theme === 'dark') {
+        body.classList.add('dark');
+        toggleButton.querySelector('.fa-moon').classList.add('hidden');
+        toggleButton.querySelector('.fa-sun').classList.remove('hidden');
+      } else {
+        body.classList.remove('dark');
+        toggleButton.querySelector('.fa-moon').classList.remove('hidden');
+        toggleButton.querySelector('.fa-sun').classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+
+</html>
